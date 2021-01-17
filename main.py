@@ -1,8 +1,43 @@
 from tkinter import *
 from tkinter import messagebox
-
+import random
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
+# Password Generator Project
+
+letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+           'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+           'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
+
+# generate an integer between 8 and 10
+nr_letters = random.randint(8, 10)
+nr_symbols = random.randint(2, 4)
+nr_numbers = random.randint(2, 4)
+
+password_list = []
+
+# append randomly chosen letters/symbols/numbers into password list
+for char in range(nr_letters):
+    password_list.append(random.choice(letters))
+
+for char in range(nr_symbols):
+    password_list += random.choice(symbols)
+
+for char in range(nr_numbers):
+    password_list += random.choice(numbers)
+
+# shuffle the list
+random.shuffle(password_list)
+
+# password_list to password (string)
+password = ""
+for char in password_list:
+    password += char
+
+print(f"Your password is: {password}")
+
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
@@ -17,7 +52,7 @@ def save():
                                            f"\nPassword: {password=} \nIs it ok to save?")
 
     if len(website) < 3 or len(email) < 5 or len(password) < 5:
-        messagebox.showinfo(title= "Error", message="The requirements are not sufficient to save")
+        messagebox.showinfo(title="Error", message="The requirements are not sufficient to save")
         is_ok = False
 
     if is_ok:
