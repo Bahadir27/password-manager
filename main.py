@@ -30,9 +30,7 @@ password_list = password_letters + password_symbols + password_numbers
 random.shuffle(password_list)
 
 # password_list to password (string)
-password = ""
-for char in password_list:
-    password += char
+password = "".join(password_list)
 
 print(f"Your password is: {password}")
 
