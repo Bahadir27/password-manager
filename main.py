@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -6,12 +7,26 @@ from tkinter import *
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
 def save():
-    with open("demo_passwords.txt", "a") as file_object:
-        # Append password at the end in demo_password text file
-        file_object.write(f"{website_entry.get()} | {email_entry.get()} | {password_entry.get()} \n")
-    website_entry.delete(0, 'end')
-    email_entry.delete(0, 'end')
-    password_entry.delete(0, 'end')
+    website = website_entry.get()
+    email = email_entry.get()
+    password = password_entry.get()
+
+    # messagebox.showinfo(title="Title", message="Message")
+    is_ok = messagebox.askokcancel(title=website,
+                                   message=f"These are the details entered: \nEmail: {email=} "
+                                           f"\nPassword: {password=} \nIs it ok to save?")
+
+    if len(website) < 3 or len(email) < 5 or len(password) < 5:
+        messagebox.showinfo(title= "Error", message="The requirements are not sufficient to save")
+        is_ok = False
+
+    if is_ok:
+        with open("demo_passwords.txt", "a") as file_object:
+            # Append password at the end in demo_password text file
+            file_object.write(f"{website} | {email} | {password} \n")
+        website_entry.delete(0, 'end')
+        # email_entry.delete(0, 'end')
+        password_entry.delete(0, 'end')
 
 
 # ---------------------------- UI SETUP ------------------------------- #
