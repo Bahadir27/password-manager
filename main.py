@@ -6,12 +6,13 @@ from tkinter import *
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
 def save():
-     with open("demo_passwords.txt", "a") as file_object:
-        # Append 'hello' at the end of file
+    with open("demo_passwords.txt", "a") as file_object:
+        # Append password at the end in demo_password text file
         file_object.write(f"{website_entry.get()} | {email_entry.get()} | {password_entry.get()} \n")
     website_entry.delete(0, 'end')
     email_entry.delete(0, 'end')
     password_entry.delete(0, 'end')
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 
