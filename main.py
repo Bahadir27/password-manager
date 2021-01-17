@@ -40,7 +40,6 @@ def generate_password():
 
     # opy the password to clipboard
     pyperclip.copy(password)
-    # spam = pyperclip.paste()
 
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
